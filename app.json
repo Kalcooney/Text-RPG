@@ -1,0 +1,12 @@
+{
+  "name": "text-rpg-game",
+  "displayName": "text-rpg-game",
+  "expo": {
+    "name": "text-rpg-game",
+    "slug": "text-rpg-game",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
