@@ -2,10 +2,12 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
+import StartMenu from "./components/start-menu";
+
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>My Test App</Text>
+      <StartMenu />
       <StatusBar style="auto" />
     </View>
   );
