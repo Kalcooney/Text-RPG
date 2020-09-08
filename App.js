@@ -2,14 +2,18 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-import StartMenu from "./components/start-menu";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
+
+import PageManager from "./components/pageManager";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <StartMenu />
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+      <View style={styles.container}>
+        <PageManager />
+      </View>
+    </Provider>
   );
 }
 

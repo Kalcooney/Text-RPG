@@ -4,36 +4,54 @@ import {
   Text,
   View,
   ImageBackground,
-  Button,
   BackHandler,
-  TouchableOpacity,
 } from "react-native";
+
+import { connect } from "react-redux";
+
+import { setActivePage } from "../redux/app/app.actions";
 
 import CustomButton from "./customButton";
 
 import startBG from "../assets/start_bg.jpg";
 
-const StartMenu = () => {
-  const buttonClicked = () => {
-    alert("Hello");
+class StartMenu extends React.Component {
+  constructor() {
+    super();
+  }
+
+  buttonClicked = () => {
+    const { setActivePage } = this.props;
+
+    setActivePage("GameHolder");
   };
 
-  const exitApp = () => {
+  exitApp = () => {
     BackHandler.exitApp();
   };
 
-  return (
-    <ImageBackground source={startBG} style={styles.backgroundImage}>
-      <View style={styles.container}>
-        <Text style={styles.title}>Text RPG</Text>
-        <View style={styles.buttonContainer}>
-          <CustomButton onPress={buttonClicked} text={"Start Game"} />
-          <CustomButton onPress={exitApp} text={"Quit Game"} />
+  render() {
+    return (
+      <ImageBackground source={startBG} style={styles.backgroundImage}>
+        <View style={styles.container}>
+          <Text style={styles.title}>Text RPG</Text>
+          <View style={styles.buttonContainer}>
+            <CustomButton
+              onPress={this.buttonClicked}
+              text={"Start Game"}
+              type="default"
+            />
+            <CustomButton
+              onPress={this.exitApp}
+              text={"Quit Game"}
+              type="default"
+            />
+          </View>
         </View>
-      </View>
-    </ImageBackground>
-  );
-};
+      </ImageBackground>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -47,19 +65,23 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 50,
     color: "#fff",
-    textAlign: "center",
     marginBottom: 200,
+    textAlign: "center",
   },
   backgroundImage: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
     justifyContent: "flex-start",
     flexDirection: "column",
     flex: 1,
+    resizeMode: "cover",
   },
 });
 
-export default StartMenu;
+const mapStateToProps = ({ app }) => ({
+  activePage: app.activePage,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setActivePage: (activePage) => dispatch(setActivePage(activePage)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(StartMenu);

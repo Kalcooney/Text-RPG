@@ -1,0 +1,4 @@
+export const AppActionTypes = {
+  SET_ACTIVE_PAGE: "SET_ACTIVE_PAGE",
+  SET_CURRENT_LEVEL: "SET_CURRENT_LEVEL",
+};
