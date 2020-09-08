@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import { connect } from "react-redux";
 
 import LevelManager from "./levelManager";
+import PlayerMenu from "./playerMenu";
+import PlayerInfo from "./playerInfo";
 
 import LEVEL_DATA from "../data/levelData";
 
@@ -30,7 +32,9 @@ const GameHolder = (props) => {
 
   return (
     <ImageBackground source={setBackgroundRef()} style={styles.backgroundImage}>
+      <PlayerInfo />
       <LevelManager />
+      <PlayerMenu />
     </ImageBackground>
   );
 };
