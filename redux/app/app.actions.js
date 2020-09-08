@@ -11,3 +11,18 @@ export const setCurrentLevel = (currentLevel) => ({
   type: AppActionTypes.SET_CURRENT_LEVEL,
   payload: currentLevel,
 });
+
+// Toggles the Character Menu
+export const toggleCharacterMenu = () => ({
+  type: AppActionTypes.TOGGLE_CHARACTER_MENU,
+});
+
+// Toggles the Inventory Menu
+export const toggleInventoryMenu = () => ({
+  type: AppActionTypes.TOGGLE_INVENTORY_MENU,
+});
+
+// Toggles the Logs Menu
+export const toggleLogsMenu = () => ({
+  type: AppActionTypes.TOGGLE_LOGS_MENU,
+});

@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import LevelManager from "./levelManager";
 import PlayerMenu from "./playerMenu";
 import PlayerInfo from "./playerInfo";
+import CharacterMenu from "./characterMenu";
 
 import LEVEL_DATA from "../data/levelData";
 
@@ -30,10 +31,25 @@ const GameHolder = (props) => {
     return backgroundRef;
   };
 
+  const setMenu = () => {
+    const { characterMenu, inventoryMenu, logMenu } = props;
+    let component;
+
+    if (characterMenu !== false) {
+      component = <CharacterMenu />;
+    } else {
+      component = <LevelManager />;
+    }
+
+    return component;
+  };
+
+  const mainComponent = setMenu();
+
   return (
     <ImageBackground source={setBackgroundRef()} style={styles.backgroundImage}>
       <PlayerInfo />
-      <LevelManager />
+      {mainComponent}
       <PlayerMenu />
     </ImageBackground>
   );
@@ -50,6 +66,9 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = ({ app }) => ({
   currentLevel: app.currentLevel,
+  characterMenu: app.characterMenu,
+  inventoryMenu: app.inventoryMenu,
+  logMenu: app.logMenu,
 });
 
 export default connect(mapStateToProps)(GameHolder);

@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   buttonSquare: {
-    padding: 20,
+    padding: 15,
   },
   buttonTextSquare: {
     textAlign: "center",

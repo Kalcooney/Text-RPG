@@ -1,12 +1,22 @@
 import React from "react";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
+import { connect } from "react-redux";
 
 import CustomButton from "./customButton";
 
-const PlayerMenu = () => {
+import { toggleCharacterMenu } from "../redux/app/app.actions";
+
+const PlayerMenu = (props) => {
+  const { toggleCharacterMenu } = props;
+
   return (
     <View style={styles.container}>
-      <CustomButton style={styles.button} text={"Character"} type={"square"} />
+      <CustomButton
+        onPress={toggleCharacterMenu}
+        style={styles.button}
+        text={"Character"}
+        type={"square"}
+      />
       <CustomButton style={styles.button} text={"Inventory"} type={"square"} />
       <CustomButton style={styles.button} text={"Logs"} type={"square"} />
     </View>
@@ -26,4 +36,12 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PlayerMenu;
+const mapStateToProps = ({ app }) => ({
+  activePage: app.activePage,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  toggleCharacterMenu: () => dispatch(toggleCharacterMenu()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlayerMenu);
