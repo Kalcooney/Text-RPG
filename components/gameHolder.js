@@ -6,6 +6,7 @@ import LevelManager from "./levelManager";
 import PlayerMenu from "./playerMenu";
 import PlayerInfo from "./playerInfo";
 import CharacterMenu from "./characterMenu";
+import InventoryMenu from "./inventoryMenu";
 
 import LEVEL_DATA from "../data/levelData";
 
@@ -37,6 +38,8 @@ const GameHolder = (props) => {
 
     if (characterMenu !== false) {
       component = <CharacterMenu />;
+    } else if (inventoryMenu !== false) {
+      component = <InventoryMenu />;
     } else {
       component = <LevelManager />;
     }

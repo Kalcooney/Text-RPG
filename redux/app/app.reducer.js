@@ -6,6 +6,10 @@ const INITIAL_STATE = {
   characterMenu: false,
   inventoryMenu: false,
   logsMenu: false,
+  currentInventoryCategory: {
+    title: "Weapons",
+    items: [],
+  },
 };
 
 const appReducer = (state = INITIAL_STATE, action) => {
@@ -19,7 +23,7 @@ const appReducer = (state = INITIAL_STATE, action) => {
     case AppActionTypes.SET_CURRENT_LEVEL:
       return {
         ...state,
-        currentLevel: action.currentLevel,
+        currentLevel: action.payload,
       };
 
     case AppActionTypes.TOGGLE_CHARACTER_MENU:
@@ -31,13 +35,19 @@ const appReducer = (state = INITIAL_STATE, action) => {
     case AppActionTypes.TOGGLE_INVENTORY_MENU:
       return {
         ...state,
-        characterMenu: !state.inventoryMenu,
+        inventoryMenu: !state.inventoryMenu,
+      };
+
+    case AppActionTypes.TOGGLE_INVENTORY_CATEGORY:
+      return {
+        ...state,
+        currentInventoryCategory: action.payload,
       };
 
     case AppActionTypes.TOGGLE_LOGS_MENU:
       return {
         ...state,
-        characterMenu: !state.logsMenu,
+        logsMenu: !state.logsMenu,
       };
 
     default: {
