@@ -58,7 +58,6 @@ const InventoryMenu = (props) => {
         break;
     }
 
-    //return alert(inventoryItems.title);
     toggleInventoryCategory(inventoryItems);
   };
   return (

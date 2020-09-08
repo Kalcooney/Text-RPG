@@ -32,3 +32,9 @@ export const toggleInventoryCategory = (inventoryCategory) => ({
 export const toggleLogsMenu = () => ({
   type: AppActionTypes.TOGGLE_LOGS_MENU,
 });
+
+// Toggles log category based on which one is clicked
+export const toggleLogCategory = (logCategory) => ({
+  type: AppActionTypes.TOGGLE_LOG_CATEGORY,
+  payload: logCategory,
+});

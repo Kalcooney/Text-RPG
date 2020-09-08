@@ -7,6 +7,7 @@ import PlayerMenu from "./playerMenu";
 import PlayerInfo from "./playerInfo";
 import CharacterMenu from "./characterMenu";
 import InventoryMenu from "./inventoryMenu";
+import LogMenu from "./logMenu";
 
 import LEVEL_DATA from "../data/levelData";
 
@@ -33,13 +34,15 @@ const GameHolder = (props) => {
   };
 
   const setMenu = () => {
-    const { characterMenu, inventoryMenu, logMenu } = props;
+    const { characterMenu, inventoryMenu, logsMenu } = props;
     let component;
 
     if (characterMenu !== false) {
       component = <CharacterMenu />;
     } else if (inventoryMenu !== false) {
       component = <InventoryMenu />;
+    } else if (logsMenu !== false) {
+      component = <LogMenu />;
     } else {
       component = <LevelManager />;
     }
@@ -71,7 +74,7 @@ const mapStateToProps = ({ app }) => ({
   currentLevel: app.currentLevel,
   characterMenu: app.characterMenu,
   inventoryMenu: app.inventoryMenu,
-  logMenu: app.logMenu,
+  logsMenu: app.logsMenu,
 });
 
 export default connect(mapStateToProps)(GameHolder);

@@ -10,6 +10,10 @@ const INITIAL_STATE = {
     title: "Weapons",
     items: [],
   },
+  currentLogCategory: {
+    title: "Knowledge",
+    items: [],
+  },
 };
 
 const appReducer = (state = INITIAL_STATE, action) => {
@@ -48,6 +52,12 @@ const appReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         logsMenu: !state.logsMenu,
+      };
+
+    case AppActionTypes.TOGGLE_LOG_CATEGORY:
+      return {
+        ...state,
+        currentLogCategory: action.payload,
       };
 
     default: {

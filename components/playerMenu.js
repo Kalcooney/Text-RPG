@@ -7,10 +7,11 @@ import CustomButton from "./customButton";
 import {
   toggleCharacterMenu,
   toggleInventoryMenu,
+  toggleLogsMenu,
 } from "../redux/app/app.actions";
 
 const PlayerMenu = (props) => {
-  const { toggleCharacterMenu, toggleInventoryMenu } = props;
+  const { toggleCharacterMenu, toggleInventoryMenu, toggleLogsMenu } = props;
 
   return (
     <View style={styles.container}>
@@ -26,7 +27,12 @@ const PlayerMenu = (props) => {
         text={"Inventory"}
         type={"square"}
       />
-      <CustomButton style={styles.button} text={"Logs"} type={"square"} />
+      <CustomButton
+        onPress={toggleLogsMenu}
+        style={styles.button}
+        text={"Logs"}
+        type={"square"}
+      />
     </View>
   );
 };
@@ -51,6 +57,7 @@ const mapStateToProps = ({ app }) => ({
 const mapDispatchToProps = (dispatch) => ({
   toggleCharacterMenu: () => dispatch(toggleCharacterMenu()),
   toggleInventoryMenu: () => dispatch(toggleInventoryMenu()),
+  toggleLogsMenu: () => dispatch(toggleLogsMenu()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerMenu);

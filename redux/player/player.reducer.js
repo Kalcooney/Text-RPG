@@ -8,6 +8,11 @@ const INITIAL_STATE = {
     keyItems: [],
     clues: [],
   },
+  logs: {
+    knowledge: [],
+    places: [],
+    monsters: [],
+  },
 };
 
 const playerReducer = (state = INITIAL_STATE, action) => {
