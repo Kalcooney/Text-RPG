@@ -10,7 +10,7 @@ const InventoryItems = (props) => {
     <View style={styles.container}>
       <MenuItem type={"heading"}>{props.title}</MenuItem>
       {props.items.length > 0 ? (
-        props.items.map((item) => <MenuItem>{item}</MenuItem>)
+        props.items.map((item) => <MenuItem>{item.name}</MenuItem>)
       ) : (
         <MenuItem>No Items</MenuItem>
       )}

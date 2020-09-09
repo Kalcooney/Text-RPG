@@ -35,7 +35,7 @@ const InventoryMenu = (props) => {
 
     switch (source) {
       case "Weapon":
-        inventoryItems.title = "Weapon";
+        inventoryItems.title = "Weapons";
         inventoryItems.items = inventory.weapons;
         break;
       case "Armor":

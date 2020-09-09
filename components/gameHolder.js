@@ -27,6 +27,7 @@ const GameHolder = (props) => {
         break;
 
       default:
+        backgroundRef = Chapter1BG;
         break;
     }
 

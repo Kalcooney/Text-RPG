@@ -1,17 +1,20 @@
 import React from "react";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
+import { connect } from "react-redux";
 
 import CustomButton from "./customButton";
 import MenuItem from "./menuItem";
 import SectionSeparator from "./sectionSeparator";
 
-const CharacterMenu = () => {
+const CharacterMenu = (props) => {
+  const { playerLevel, currentXP, stats, equippedItems } = props;
+
   return (
     <View style={styles.container}>
       <View style={styles.oneColumn}>
-        <MenuItem type={"heading"}>Level 01</MenuItem>
+        <MenuItem type={"heading"}>Level {playerLevel}</MenuItem>
         <View style={styles.twoColumn}>
-          <MenuItem>Current XP: 0</MenuItem>
+          <MenuItem>Current XP: {currentXP}</MenuItem>
           <MenuItem>XP to Next Level: 10</MenuItem>
         </View>
       </View>
@@ -19,32 +22,50 @@ const CharacterMenu = () => {
       <View style={styles.twoColumn}>
         <View>
           <MenuItem type={"heading"}>Characteristics</MenuItem>
-          <MenuItem>Strength: 1</MenuItem>
-          <MenuItem>Dexterity: 1</MenuItem>
-          <MenuItem>Charisma: 1</MenuItem>
-          <MenuItem>Intelligence: 1</MenuItem>
-          <MenuItem>Cunning: 1</MenuItem>
-          <MenuItem>Luck: 1</MenuItem>
+          <MenuItem>Strength: {stats.strength}</MenuItem>
+          <MenuItem>Dexterity: {stats.dexterity}</MenuItem>
+          <MenuItem>Intelligence: {stats.intelligence}</MenuItem>
+          <MenuItem>Charisma: {stats.charisma}</MenuItem>
+          <MenuItem>Luck: {stats.luck}</MenuItem>
         </View>
         <View>
           <MenuItem type={"heading"}>Stats/Other:</MenuItem>
-          <MenuItem>Damage: 1</MenuItem>
-          <MenuItem>Armor: 1</MenuItem>
-          <MenuItem>Accuracy: 1</MenuItem>
-          <MenuItem>HP: 1</MenuItem>
-          <MenuItem>Gold: 1</MenuItem>
+          <MenuItem>Base Damage: {stats.baseDamage}</MenuItem>
+          <MenuItem>Armor: {stats.armor}</MenuItem>
+          <MenuItem>Accuracy: {stats.accuracy}</MenuItem>
+          <MenuItem>HP: {stats.maxHP}</MenuItem>
+          <MenuItem>Gold: {stats.gold}</MenuItem>
         </View>
       </View>
       <SectionSeparator />
       <View style={styles.oneColumn}>
         <MenuItem type={"heading"}>Gear</MenuItem>
-        <MenuItem>Weapon: Nothing Equipped</MenuItem>
-        <MenuItem>Head: Nothing Equipped</MenuItem>
-        <MenuItem>Chest: Nothing Equipped</MenuItem>
-        <MenuItem>Arms: Nothing Equipped</MenuItem>
-        <MenuItem>Legs: Nothing Equipped</MenuItem>
-        <MenuItem>Feet: Nothing Equipped</MenuItem>
-        <MenuItem>Accessory: Nothing Equipped</MenuItem>
+        <MenuItem>
+          Weapon:{" "}
+          {equippedItems.weapon ? equippedItems.weapon : "Nothing Equipped"}
+        </MenuItem>
+        <MenuItem>
+          Head: {equippedItems.head ? equippedItems.head : "Nothing Equipped"}
+        </MenuItem>
+        <MenuItem>
+          Chest:{" "}
+          {equippedItems.chest ? equippedItems.chest : "Nothing Equipped"}
+        </MenuItem>
+        <MenuItem>
+          Arms: {equippedItems.arms ? equippedItems.arms : "Nothing Equipped"}
+        </MenuItem>
+        <MenuItem>
+          Legs: {equippedItems.legs ? equippedItems.legs : "Nothing Equipped"}
+        </MenuItem>
+        <MenuItem>
+          Feet: {equippedItems.feet ? equippedItems.feet : "Nothing Equipped"}
+        </MenuItem>
+        <MenuItem>
+          Accessory:{" "}
+          {equippedItems.accessory
+            ? equippedItems.accessory
+            : "Nothing Equipped"}
+        </MenuItem>
       </View>
     </View>
   );
@@ -72,4 +93,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CharacterMenu;
+const mapStateToProps = ({ player }) => ({
+  playerLevel: player.playerLevel,
+  currentXP: player.currentXP,
+  stats: player.stats,
+  equippedItems: player.equipped,
+});
+
+export default connect(mapStateToProps)(CharacterMenu);
