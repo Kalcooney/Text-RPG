@@ -34,12 +34,16 @@ const appReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         characterMenu: !state.characterMenu,
+        inventoryMenu: false,
+        logsMenu: false,
       };
 
     case AppActionTypes.TOGGLE_INVENTORY_MENU:
       return {
         ...state,
         inventoryMenu: !state.inventoryMenu,
+        characterMenu: false,
+        logsMenu: false,
       };
 
     case AppActionTypes.TOGGLE_INVENTORY_CATEGORY:
@@ -52,6 +56,8 @@ const appReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         logsMenu: !state.logsMenu,
+        characterMenu: false,
+        inventoryMenu: false,
       };
 
     case AppActionTypes.TOGGLE_LOG_CATEGORY:
