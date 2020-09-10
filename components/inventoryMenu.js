@@ -14,7 +14,10 @@ import MenuItem from "./menuItem";
 import SectionSeparator from "./sectionSeparator";
 import InventoryItems from "./inventoryItems";
 
-import { toggleInventoryCategory } from "../redux/app/app.actions";
+import {
+  toggleInventoryCategory,
+  toggleInventoryDefault,
+} from "../redux/app/app.actions";
 
 // Import icons
 import WeaponIcon from "../assets/sword.png";
@@ -25,8 +28,10 @@ import ClueIcon from "../assets/writing.png";
 
 const InventoryMenu = (props) => {
   const {
-    inventory,
+    playerInventory,
+    inventoryDefault,
     toggleInventoryCategory,
+    toggleInventoryDefault,
     currentInventoryCategory,
   } = props;
 
@@ -36,30 +41,34 @@ const InventoryMenu = (props) => {
     switch (source) {
       case "Weapon":
         inventoryItems.title = "Weapons";
-        inventoryItems.items = inventory.weapons;
+        inventoryItems.items = playerInventory.weapons;
         break;
       case "Armor":
         inventoryItems.title = "Armor";
-        inventoryItems.items = inventory.armor;
+        inventoryItems.items = playerInventory.armor;
         break;
       case "Bag":
         inventoryItems.title = "Consumables";
-        inventoryItems.items = inventory.consumables;
+        inventoryItems.items = playerInventory.consumables;
         break;
       case "Key":
         inventoryItems.title = "Key Items";
-        inventoryItems.items = inventory.keyItems;
+        inventoryItems.items = playerInventory.keyItems;
         break;
       case "Clue":
         inventoryItems.title = "Clues";
-        inventoryItems.items = inventory.clues;
+        inventoryItems.items = playerInventory.clues;
         break;
       default:
         break;
     }
 
     toggleInventoryCategory(inventoryItems);
+    if (inventoryDefault) {
+      toggleInventoryDefault();
+    }
   };
+
   return (
     <View style={styles.container}>
       <View style={styles.oneColumn}>
@@ -82,8 +91,12 @@ const InventoryMenu = (props) => {
       <SectionSeparator />
       <View>
         <InventoryItems
-          title={currentInventoryCategory.title}
-          items={currentInventoryCategory.items}
+          title={!inventoryDefault ? currentInventoryCategory.title : "Weapons"}
+          items={
+            !inventoryDefault
+              ? currentInventoryCategory.items
+              : playerInventory.weapons
+          }
         />
       </View>
     </View>
@@ -119,13 +132,15 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = ({ app, player }) => ({
-  inventory: player.inventory,
+  playerInventory: player.inventory,
   currentInventoryCategory: app.currentInventoryCategory,
+  inventoryDefault: app.inventoryDefault,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   toggleInventoryCategory: (inventoryCategory) =>
     dispatch(toggleInventoryCategory(inventoryCategory)),
+  toggleInventoryDefault: () => dispatch(toggleInventoryDefault()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(InventoryMenu);

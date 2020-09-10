@@ -44,7 +44,23 @@ const LEVEL_DATA = {
   },
   "Prologue-1AAA": {
     text:
-      "You put the sword in your inventory. A nice choice indeed. you look around you. You notice two points of interest. A lighthouse not too far in the distance and a weirdly shaped rock to the east. Where do you go?",
+      "You put the sword in your inventory. A nice choice indeed. You look around you. You notice two points of interest. A lighthouse not too far in the distance and a weirdly shaped rock to the east. Where do you go?",
+    options: [
+      { optionID: 7, option: "Investigate the Lighthouse" },
+      { optionID: 8, option: "Head to the Rock" },
+    ],
+  },
+  "Prologue-1AAB": {
+    text:
+      "You put the bow in your inventory. A sneaky choice indeed. You look around you. You notice two points of interest. A lighthouse not too far in the distance and a weirdly shaped rock to the east. Where do you go?",
+    options: [
+      { optionID: 7, option: "Investigate the Lighthouse" },
+      { optionID: 8, option: "Head to the Rock" },
+    ],
+  },
+  "Prologue-1AAA": {
+    text:
+      "You put the staff in your inventory. A wise choice indeed. You look around you. You notice two points of interest. A lighthouse not too far in the distance and a weirdly shaped rock to the east. Where do you go?",
     options: [
       { optionID: 7, option: "Investigate the Lighthouse" },
       { optionID: 8, option: "Head to the Rock" },

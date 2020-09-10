@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   currentLevel: "Prologue-1",
   characterMenu: false,
   inventoryMenu: false,
+  inventoryDefault: true,
   logsMenu: false,
   currentInventoryCategory: {
     title: "Weapons",
@@ -14,6 +15,7 @@ const INITIAL_STATE = {
     title: "Knowledge",
     items: [],
   },
+  itemDescription: {},
 };
 
 const appReducer = (state = INITIAL_STATE, action) => {
@@ -52,6 +54,12 @@ const appReducer = (state = INITIAL_STATE, action) => {
         currentInventoryCategory: action.payload,
       };
 
+    case AppActionTypes.TOGGLE_INVENTORY_DEFAULT:
+      return {
+        ...state,
+        inventoryDefault: !state.inventoryDefault,
+      };
+
     case AppActionTypes.TOGGLE_LOGS_MENU:
       return {
         ...state,
@@ -64,6 +72,12 @@ const appReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         currentLogCategory: action.payload,
+      };
+
+    case AppActionTypes.SET_CURRENT_ITEM_DESCRIPTION:
+      return {
+        ...state,
+        itemDescription: action.payload,
       };
 
     default: {
